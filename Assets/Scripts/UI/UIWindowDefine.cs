@@ -3,5 +3,5 @@ using System.Collections;
 
 public static class UIWindowDefine
 {
-    public static string UILogin = "";
+    public static string LoginWindow = "Prefabs/UI/UILoginWindow";
 }

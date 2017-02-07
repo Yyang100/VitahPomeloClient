@@ -1,3 +1,5 @@
+// 定义协议
+
 public static class ProtocolRoute
 {
     #region connector

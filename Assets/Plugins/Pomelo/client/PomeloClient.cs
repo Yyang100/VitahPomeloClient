@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using SimpleJson;
 using UnityEngine.Assertions;
+using UnityEngine;
 
 namespace Pomelo.DotNetClient
 {
@@ -46,15 +47,17 @@ namespace Pomelo.DotNetClient
         public bool InitClient(string host, int port)
         {
             this.socket = SocketCreator.Connect(host, port);
+
             if (this.socket == null)
             {
                 this.NetWorkChanged(NetWorkState.ERROR);
                 return false;
             }
-
+				
             this.eventManager = new EventManager();
             this.protocol = new Protocol(this, this.socket);
             this.NetWorkChanged(NetWorkState.CONNECTED);
+
             return true;
         }
 

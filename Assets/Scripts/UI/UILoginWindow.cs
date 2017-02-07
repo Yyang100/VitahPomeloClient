@@ -20,5 +20,27 @@ public class UILoginWindow : MonoBehaviour {
 	private void OnButtonLoginClick()
 	{
 		Debug.Log ("登陆按钮点击");
+
+		PomeloManager.Destroy();
+		PomeloManager.Instance.Connect((code, data) =>
+			{
+				if (code == ErrorCode.OK)
+				{
+					ConnectorEntryRequest request = new ConnectorEntryRequest();
+					request.OnSuccess = this.OnEntry;
+					request.Entry();
+				}
+				else
+				{
+					Debug.Log("connect fail");
+					this.loginBtn.gameObject.SetActive(true);
+				}
+			});
+	}
+
+	private void OnEntry(RequestData data)
+	{
+		Debug.Log ("OnEntry");
+		Debug.Log (data);
 	}
 }

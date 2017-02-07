@@ -66,6 +66,7 @@ public class PomeloManager : Singleton<PomeloManager>
                     RequestData data = null;
                     if (jsonObject != null)
                     {
+						// 打印协议信息
                         Debug.Log(route + "\n" + jsonObject.ToString());
                         data = new RequestData(
                             JsonUtil.GetInt32(jsonObject, "code"),

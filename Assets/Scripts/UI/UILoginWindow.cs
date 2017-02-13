@@ -10,7 +10,7 @@ public class UILoginWindow : MonoBehaviour
 	private Button loginBtn;
 
 	public void Start ()
-    {
+	{
 		// 断言，判断按钮对象是否不为空
 		Assert.IsNotNull (this.loginBtn);
 

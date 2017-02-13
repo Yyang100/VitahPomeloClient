@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UILoginWindow : MonoBehaviour
 {
@@ -39,5 +40,6 @@ public class UILoginWindow : MonoBehaviour
 	{
 		Debug.Log ("OnEntry");
 		Debug.Log (data);
+		Loom.DispatchToMainThread(() => SceneManager.LoadScene("Main"));
 	}
 }

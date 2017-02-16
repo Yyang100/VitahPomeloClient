@@ -40,6 +40,26 @@ public class UILoginWindow : MonoBehaviour
 	{
 		Debug.Log ("OnEntry");
 		Debug.Log (data);
+
+		// 数据池清空
+		DataPool.Destroy();
+
+		// 获取相关登陆数据
+		LoginData loginData = new LoginData();
+		loginData.onSuccess = this.OnLoginDataSuccess;
+		loginData.onError = this.OnLoginDataError;
+		loginData.Receive();
+	}
+
+	// 登陆数据获取成功
+	private void OnLoginDataSuccess()
+	{
 		Loom.DispatchToMainThread(() => SceneManager.LoadScene("Main"));
+	}
+
+	// 登陆数据获取失败
+	private void OnLoginDataError(RequestData data)
+	{
+		this.loginBtn.gameObject.SetActive(true);
 	}
 }

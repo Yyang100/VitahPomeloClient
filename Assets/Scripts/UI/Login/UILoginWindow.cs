@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class UILoginWindow : MonoBehaviour
 {
-
 	// 用于绑定登陆按钮
 	[SerializeField]
 	private Button loginBtn;

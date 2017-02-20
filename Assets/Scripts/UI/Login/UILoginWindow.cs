@@ -38,7 +38,6 @@ public class UILoginWindow : MonoBehaviour
 	private void OnEntry (RequestData data)
 	{
 		Debug.Log ("OnEntry");
-		Debug.Log (data);
 
 		// 数据池清空
 		DataPool.Destroy();

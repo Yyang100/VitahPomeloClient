@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
-public class UIMainSceneWindow : MonoBehaviour {
+public class UIMainSceneWindow : UIWindow {
 	[SerializeField]
 	private Text roleInfoText;
 

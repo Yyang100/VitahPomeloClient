@@ -10,7 +10,7 @@ public class UIMainSceneWindow : UIWindow {
 	// Use this for initialization
 	void Start () {
 		Assert.IsNotNull (this.roleInfoText);
-		this.showRoleInfo ();
+		//this.showRoleInfo ();
 	}
 	
 	private void showRoleInfo(){
@@ -25,4 +25,26 @@ public class UIMainSceneWindow : UIWindow {
 		"  Gold:" + DataPool.Instance.Role.Gold.ToString () +
 		"  Diamond:" + DataPool.Instance.Role.Diamond.ToString ();
 	}
+
+	public override void OnEnter()
+    {
+        base.OnEnter();
+        PushEventNotifyCenter.Instance.AddNotification(ProtocolFeature.OnRole, this);
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        PushEventNotifyCenter.Instance.RemoveObserver(ProtocolFeature.OnRole, this);
+    }
+
+    public override void OnResume()
+    {
+        base.OnResume();
+        this.OnRole();
+    }
+
+	private void OnRole()
+    {
+    }
 }

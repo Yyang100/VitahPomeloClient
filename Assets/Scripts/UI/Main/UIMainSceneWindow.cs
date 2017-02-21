@@ -75,6 +75,6 @@ public class UIMainSceneWindow : UIWindow {
 
 	private void OnRole()
     {
-		this.showRoleInfo ();
+		this.showRoleInfo();
     }
 }

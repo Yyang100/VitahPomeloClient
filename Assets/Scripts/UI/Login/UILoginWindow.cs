@@ -20,8 +20,6 @@ public class UILoginWindow : MonoBehaviour
 
 	private void OnButtonLoginClick ()
 	{
-		Debug.Log ("登陆按钮点击");
-
 		PomeloManager.Destroy ();
 		PomeloManager.Instance.Connect ((code, data) => {
 			if (code == ErrorCode.OK) {
@@ -37,8 +35,6 @@ public class UILoginWindow : MonoBehaviour
 
 	private void OnEntry (RequestData data)
 	{
-		Debug.Log ("OnEntry");
-
 		// 数据池清空
 		DataPool.Destroy();
 

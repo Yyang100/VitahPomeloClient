@@ -60,14 +60,14 @@ public class UIMainSceneWindow : UIWindow {
     }
 
 	// 退出这个界面时调用
-    public override void OnExit()
+	public override void OnExit()
     {
         base.OnExit();
         PushEventNotifyCenter.Instance.RemoveObserver(ProtocolFeature.OnRole, this);
     }
 
 	// 每次显示这个界面时调用
-    public override void OnResume()
+	public override void OnResume()
     {
         base.OnResume();
         this.OnRole();

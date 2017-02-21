@@ -16,6 +16,8 @@ public class UIMainSceneWindow : UIWindow {
 	void Start () {
 		Assert.IsNotNull (this.roleInfoText);
 		Assert.IsNotNull (this.addResBtn);
+
+		this.addResBtn.onClick.AddListener (this.onAddResBtnClick);
 		//this.showRoleInfo ();
 	}
 	
@@ -30,6 +32,17 @@ public class UIMainSceneWindow : UIWindow {
 		"  Lv:" + DataPool.Instance.Role.Lv.ToString () +
 		"  Gold:" + DataPool.Instance.Role.Gold.ToString () +
 		"  Diamond:" + DataPool.Instance.Role.Diamond.ToString ();
+	}
+
+	private void onAddResBtnClick (){
+		Debug.Log ("资源增加按钮点击");
+		UserResRequest req = new UserResRequest ();
+		req.OnSuccess = this.onAddResReqSuccess;
+		req.add ();
+	}
+
+	private void onAddResReqSuccess(RequestData data){
+		Debug.Log("资源增加协议成功");
 	}
 
 	public override void OnEnter()

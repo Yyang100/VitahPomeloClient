@@ -4,12 +4,18 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class UIMainSceneWindow : UIWindow {
+	//  显示用户信息
 	[SerializeField]
 	private Text roleInfoText;
+
+	// 添加资源按钮
+	[SerializeField]
+	private Button addResBtn;
 
 	// Use this for initialization
 	void Start () {
 		Assert.IsNotNull (this.roleInfoText);
+		Assert.IsNotNull (this.addResBtn);
 		//this.showRoleInfo ();
 	}
 	

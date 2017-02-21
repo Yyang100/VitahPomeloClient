@@ -8,5 +8,6 @@ public static class ProtocolRoute
 
 	#region user
 	public static string USER_ROLE_GETINFO = "user.roleHandler.getInfo";
+	public static string USER_RES_ADD = "user.resHandler.add";
 	#endregion
 }

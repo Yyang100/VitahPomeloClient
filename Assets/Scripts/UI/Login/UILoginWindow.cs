@@ -52,6 +52,8 @@ public class UILoginWindow : MonoBehaviour
 	// 登陆数据获取成功
 	private void OnLoginDataSuccess()
 	{
+		PushManager.Instance.Init();
+		PushEventNotifyCenter.Instance.RemoveAllListener();
 		Loom.DispatchToMainThread(() => SceneManager.LoadScene("Main"));
 	}
 

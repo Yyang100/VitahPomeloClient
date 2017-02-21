@@ -18,7 +18,6 @@ public class UIMainSceneWindow : UIWindow {
 		Assert.IsNotNull (this.addResBtn);
 
 		this.addResBtn.onClick.AddListener (this.onAddResBtnClick);
-		//this.showRoleInfo ();
 	}
 	
 	private void showRoleInfo(){
@@ -34,29 +33,40 @@ public class UIMainSceneWindow : UIWindow {
 		"  Diamond:" + DataPool.Instance.Role.Diamond.ToString ();
 	}
 
+	// 添加资源按钮点击响应
 	private void onAddResBtnClick (){
-		Debug.Log ("资源增加按钮点击");
 		UserResRequest req = new UserResRequest ();
 		req.OnSuccess = this.onAddResReqSuccess;
-		req.add ();
+		int gold = 100;
+		int diamond = 100;
+		req.add (gold,diamond);
 	}
 
+	// 添加资源协议成功回调
 	private void onAddResReqSuccess(RequestData data){
 		Debug.Log("资源增加协议成功");
 	}
 
+	// 进入时触发
 	public override void OnEnter()
     {
         base.OnEnter();
+
+		// 显示用户信息
+		this.showRoleInfo ();
+
+		// 添加监听
         PushEventNotifyCenter.Instance.AddNotification(ProtocolFeature.OnRole, this);
     }
 
+	// 退出这个界面时调用
     public override void OnExit()
     {
         base.OnExit();
         PushEventNotifyCenter.Instance.RemoveObserver(ProtocolFeature.OnRole, this);
     }
 
+	// 每次显示这个界面时调用
     public override void OnResume()
     {
         base.OnResume();
@@ -65,5 +75,6 @@ public class UIMainSceneWindow : UIWindow {
 
 	private void OnRole()
     {
+		this.showRoleInfo ();
     }
 }

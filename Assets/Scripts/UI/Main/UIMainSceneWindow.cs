@@ -19,12 +19,14 @@ public class UIMainSceneWindow : UIWindow {
 
 		this.addResBtn.onClick.AddListener (this.onAddResBtnClick);
 	}
-	
+
+	// 显示玩家信息内容
 	private void showRoleInfo(){
 		this.roleInfoText.text = string.Empty;
 		this.roleInfoText.text = this.getRoleInfoStr ();
 	}
 
+	// 生成玩家信息的字符串
 	private string getRoleInfoStr(){
 		return "Uid:" + DataPool.Instance.Role.Uid.ToString () +
 		"  Name:" + DataPool.Instance.Role.Name +

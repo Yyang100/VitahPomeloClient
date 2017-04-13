@@ -28,11 +28,11 @@ public class UIMainSceneWindow : UIWindow {
 
 	// 生成玩家信息的字符串
 	private string getRoleInfoStr(){
-		return "Uid:" + DataPool.Instance.Role.Uid.ToString () +
-		"  Name:" + DataPool.Instance.Role.Name +
-		"  Lv:" + DataPool.Instance.Role.Lv.ToString () +
-		"  Gold:" + DataPool.Instance.Role.Gold.ToString () +
-		"  Diamond:" + DataPool.Instance.Role.Diamond.ToString ();
+		return "ID:" + DataPool.Instance.Role.Uid.ToString () +
+		"  名字:" + DataPool.Instance.Role.Name +
+		"  等级:" + DataPool.Instance.Role.Lv.ToString () +
+		"  金币:" + DataPool.Instance.Role.Gold.ToString () +
+		"  钻石:" + DataPool.Instance.Role.Diamond.ToString ();
 	}
 
 	// 添加资源按钮点击响应

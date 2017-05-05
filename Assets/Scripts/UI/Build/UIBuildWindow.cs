@@ -47,10 +47,7 @@ public class UIBuildWindow : UIWindow {
 		this.upgradeInput.text = "输入建筑ID";
 		this.refreshInput.text = "输入建筑ID";
 
-		for (int i = 0; i < DataPool.Instance.Build.ListBuildItem.Count; i++) {
-			BuildItemData build_item = DataPool.Instance.Build.ListBuildItem [i];
-
-		}
+		this.buildInfoText.text = this.getBuildInfoStr ();
 	}
 
 	private string getBuildInfoStr(){

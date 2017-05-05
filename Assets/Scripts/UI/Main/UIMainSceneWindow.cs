@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using System;
 
 public class UIMainSceneWindow : UIWindow {
 	//  显示用户信息
@@ -42,6 +43,10 @@ public class UIMainSceneWindow : UIWindow {
 		int gold = 100;
 		int diamond = 100;
 		req.add (gold,diamond);
+	}
+
+	private void onBuildBtnClick(){
+		UIManager.Instance.PushWindow(UIWindowDefine.BuildWindow, true);
 	}
 
 	// 添加资源协议成功回调

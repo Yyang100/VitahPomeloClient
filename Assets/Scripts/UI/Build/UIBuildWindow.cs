@@ -9,9 +9,6 @@ public class UIBuildWindow : UIWindow {
 	private Text buildInfoText;
 
 	[SerializeField]
-	private Button closeBtn;
-
-	[SerializeField]
 	private Button buildBtn;
 
 	[SerializeField]
@@ -32,7 +29,6 @@ public class UIBuildWindow : UIWindow {
 	// Use this for initialization
 	void Start () {
 		Assert.IsNotNull (this.buildInfoText);
-		Assert.IsNotNull (this.closeBtn);
 		Assert.IsNotNull (this.buildBtn);
 		Assert.IsNotNull (this.upgradeBtn);
 		Assert.IsNotNull (this.refreshBtn);
@@ -40,7 +36,6 @@ public class UIBuildWindow : UIWindow {
 		Assert.IsNotNull (this.upgradeInput);
 		Assert.IsNotNull (this.refreshInput);
 
-		this.closeBtn.onClick.AddListener (this.onCloseBtnClick);
 		this.buildBtn.onClick.AddListener (this.onBuildBtnClick);
 		this.upgradeBtn.onClick.AddListener (this.onUpgradeBtnClick);
 		this.refreshBtn.onClick.AddListener (this.onRefreshBtnClick);
@@ -71,9 +66,6 @@ public class UIBuildWindow : UIWindow {
 		}
 		
 		return info_str;
-	}
-
-	private void onCloseBtnClick (){
 	}
 
 	// 建造按钮点击响应

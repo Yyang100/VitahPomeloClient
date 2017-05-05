@@ -1,5 +1,8 @@
 ﻿public static class ProtocolEvent
 {
-    // uset data push
+    // user data push
     public static string ON_ROLE_CHANGE = "onRoleChange";
+
+	// build data push
+	public static string ON_BUILD_CHANGE = "onBuildChange";
 }

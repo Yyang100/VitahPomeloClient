@@ -48,18 +48,35 @@ public class UIBuildWindow : UIWindow {
 
 	private void showBuildInfo(){
 		this.buildInfoText.text = string.Empty;
+		this.buildInput.text = "输入建筑类型";
+		this.upgradeInput.text = "输入建筑ID";
+		this.refreshInput.text = "输入建筑ID";
+
+		for (int i = 0; i < DataPool.Instance.Build.ListBuildItem.Count; i++) {
+			BuildItemData build_item = DataPool.Instance.Build.ListBuildItem [i];
+
+		}
 	}
 
 	private string getBuildInfoStr(){
-		return "建筑ID:" + DataPool.Instance.Role.Uid.ToString () +
-		"  建筑类型:" + DataPool.Instance.Role.Name +
-		"  建筑等级:" + DataPool.Instance.Role.Lv.ToString () +
-		"  建筑升级结束时间:" + DataPool.Instance.Role.Gold.ToString ();
+		string info_str = string.Empty;
+
+		for (int i = 0; i < DataPool.Instance.Build.ListBuildItem.Count; i++) {
+			BuildItemData build_item = DataPool.Instance.Build.ListBuildItem [i];
+			string build_item_str = "建筑ID:" + build_item.BuildId +
+			                        "建筑类型：" + build_item.Type +
+			                        "建筑等级：" + build_item.Lv +
+			                        "升级结束时间：" + build_item.UpEndTime;
+			info_str += build_item_str;
+		}
+		
+		return info_str;
 	}
 
 	private void onCloseBtnClick (){
 	}
 
+	// 建造按钮点击响应
 	private void onBuildBtnClick (){
 		BuildBuildRequest req = new BuildBuildRequest ();
 		req.OnSuccess = this.onBuildReqSuccess;
@@ -67,6 +84,7 @@ public class UIBuildWindow : UIWindow {
 		req.build (build_type);
 	}
 
+	// 升级按钮点击响应
 	private void onUpgradeBtnClick (){
 		BuildUpgradeRequest req = new BuildUpgradeRequest ();
 		req.OnSuccess = this.onUpgradeReqSuccess;
@@ -74,6 +92,7 @@ public class UIBuildWindow : UIWindow {
 		req.upgrade (build_id);
 	}
 
+	// 刷新按钮点击响应
 	private void onRefreshBtnClick (){
 		BuildRefreshRequest req = new BuildRefreshRequest ();
 		req.OnSuccess = this.onRefreshReqSuccess;
@@ -96,15 +115,18 @@ public class UIBuildWindow : UIWindow {
 	public override void OnEnter()
 	{
 		base.OnEnter();
+		PushEventNotifyCenter.Instance.AddNotification(ProtocolFeature.OnBuild, this);
 	}
 		
 	public override void OnExit()
 	{
 		base.OnExit();
+		PushEventNotifyCenter.Instance.RemoveObserver(ProtocolFeature.OnBuild, this);
 	}
 		
 	public override void OnResume()
 	{
 		base.OnResume();
+		this.showBuildInfo ();
 	}
 }

@@ -4,7 +4,7 @@ using SimpleJson;
 
 public class BuildRefreshRequest : BaseRequest {
 	
-	public void upgrade(int build_id)
+	public void refresh(int build_id)
 	{
 		JsonObject msg = new JsonObject();
 		msg.Add ("build_id",build_id);

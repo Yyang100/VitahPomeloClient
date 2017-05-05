@@ -39,6 +39,11 @@ public class UIBuildWindow : UIWindow {
 		Assert.IsNotNull (this.buildInput);
 		Assert.IsNotNull (this.upgradeInput);
 		Assert.IsNotNull (this.refreshInput);
+
+		this.closeBtn.onClick.AddListener (this.onCloseBtnClick);
+		this.buildBtn.onClick.AddListener (this.onBuildBtnClick);
+		this.upgradeBtn.onClick.AddListener (this.onUpgradeBtnClick);
+		this.refreshBtn.onClick.AddListener (this.onRefreshBtnClick);
 	}
 
 	private void showBuildInfo(){
@@ -50,6 +55,9 @@ public class UIBuildWindow : UIWindow {
 		"  建筑类型:" + DataPool.Instance.Role.Name +
 		"  建筑等级:" + DataPool.Instance.Role.Lv.ToString () +
 		"  建筑升级结束时间:" + DataPool.Instance.Role.Gold.ToString ();
+	}
+
+	private void onCloseBtnClick (){
 	}
 
 	private void onBuildBtnClick (){

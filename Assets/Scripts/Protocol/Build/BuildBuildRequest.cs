@@ -3,6 +3,7 @@ using System.Collections;
 using SimpleJson;
 
 public class BuildBuildRequest : BaseRequest {
+	
 	public void build(int build_type)
 	{
 		JsonObject msg = new JsonObject();

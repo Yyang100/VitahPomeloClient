@@ -3,6 +3,7 @@ using System.Collections;
 using SimpleJson;
 
 public class BuildRefreshRequest : BaseRequest {
+	
 	public void upgrade(int build_id)
 	{
 		JsonObject msg = new JsonObject();

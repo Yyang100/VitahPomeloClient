@@ -10,4 +10,10 @@ public static class ProtocolRoute
 	public static string USER_ROLE_GETINFO = "user.roleHandler.getInfo";
 	public static string USER_RES_ADD = "user.resHandler.add";
 	#endregion
+
+	#region build
+	public static string BUILD_BUILD = "build.buildHandler.build";
+	public static string BUILD_UPGRADE = "build.upgradeHandler.upgrade";
+	public static string BUILD_REFRESH = "build.refreshHandler.refresh";
+	#endregion
 }

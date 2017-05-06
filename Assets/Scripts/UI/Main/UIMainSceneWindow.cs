@@ -13,12 +13,18 @@ public class UIMainSceneWindow : UIWindow {
 	[SerializeField]
 	private Button addResBtn;
 
+	// 添加资源按钮
+	[SerializeField]
+	private Button buildPanelBtn;
+
 	// Use this for initialization
 	void Start () {
 		Assert.IsNotNull (this.roleInfoText);
 		Assert.IsNotNull (this.addResBtn);
+		Assert.IsNotNull (this.buildPanelBtn);
 
 		this.addResBtn.onClick.AddListener (this.onAddResBtnClick);
+		this.buildPanelBtn.onClick.AddListener (this.onBuildBtnClick);
 	}
 
 	// 显示玩家信息内容
@@ -29,11 +35,12 @@ public class UIMainSceneWindow : UIWindow {
 
 	// 生成玩家信息的字符串
 	private string getRoleInfoStr(){
-		return "ID:" + DataPool.Instance.Role.Uid.ToString () +
-		"  名字:" + DataPool.Instance.Role.Name +
-		"  等级:" + DataPool.Instance.Role.Lv.ToString () +
-		"  金币:" + DataPool.Instance.Role.Gold.ToString () +
-		"  钻石:" + DataPool.Instance.Role.Diamond.ToString ();
+		return "用户信息：\n" +
+		"  ID: " + DataPool.Instance.Role.Uid.ToString () +
+		"\n  名字: " + DataPool.Instance.Role.Name +
+		"  等级: " + DataPool.Instance.Role.Lv.ToString () +
+		"\n  金币: " + DataPool.Instance.Role.Gold.ToString () +
+		"  钻石: " + DataPool.Instance.Role.Diamond.ToString ();
 	}
 
 	// 添加资源按钮点击响应

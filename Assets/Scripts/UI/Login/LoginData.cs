@@ -35,6 +35,7 @@ public class LoginData
 	{
 		this.currentRequestIndex = 0;
 		this.AddRequestItem(typeof(UserRoleRequest), DataPool.Instance.Role.Init, "role_info");
+		this.AddRequestItem(typeof(BuildInfoRequest), DataPool.Instance.Build.Init, "build_info");
 	}
 
 	public void Receive()

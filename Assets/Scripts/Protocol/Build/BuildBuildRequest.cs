@@ -8,6 +8,6 @@ public class BuildBuildRequest : BaseRequest {
 	{
 		JsonObject msg = new JsonObject();
 		msg.Add ("build_type",build_type);
-		this.Request(ProtocolRoute.BUILD_BUILD, msg);
+		this.Request(ProtocolRoute.BUILDING_BUILD, msg);
 	}
 }

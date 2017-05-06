@@ -8,6 +8,6 @@ public class BuildUpgradeRequest : BaseRequest {
 	{
 		JsonObject msg = new JsonObject();
 		msg.Add ("build_id",build_id);
-		this.Request(ProtocolRoute.BUILD_UPGRADE, msg);
+		this.Request(ProtocolRoute.BUILDING_UPGRADE, msg);
 	}
 }

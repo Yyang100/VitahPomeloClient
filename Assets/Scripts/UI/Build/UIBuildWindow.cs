@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using System;
 
 public class UIBuildWindow : UIWindow {
 
@@ -42,24 +43,32 @@ public class UIBuildWindow : UIWindow {
 	}
 
 	private void showBuildInfo(){
-		this.buildInfoText.text = string.Empty;
-		this.buildInput.text = "输入建筑类型";
-		this.upgradeInput.text = "输入建筑ID";
-		this.refreshInput.text = "输入建筑ID";
-
 		this.buildInfoText.text = this.getBuildInfoStr ();
+		this.emptyInput ();
 	}
 
 	private string getBuildInfoStr(){
-		string info_str = string.Empty;
+		if (DataPool.Instance.Build.ListBuildItem.Count == 0) {
+			return "建筑列表为空";
+		}
 
+		string info_str = string.Empty;
+		System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+			
 		for (int i = 0; i < DataPool.Instance.Build.ListBuildItem.Count; i++) {
 			BuildItemData build_item = DataPool.Instance.Build.ListBuildItem [i];
-			string build_item_str = "建筑ID:" + build_item.BuildId +
-			                        "建筑类型：" + build_item.Type +
-			                        "建筑等级：" + build_item.Lv +
-			                        "升级结束时间：" + build_item.UpEndTime;
-			info_str += build_item_str;
+			var upEndTimeStr = string.Empty;
+			if (build_item.UpEndTime == 0) {
+				upEndTimeStr = "    不在升级中";
+			} else {
+				DateTime dt = startTime.AddSeconds(build_item.UpEndTime);
+				upEndTimeStr = "   升级结束时间：" + dt.ToString("yyyy/MM/dd HH:mm:ss");
+			}
+
+			string build_item_str = "ID:" + build_item.BuildId +
+			                        "  类型：" + build_item.Type +
+			                        "   等级：" + build_item.Lv + upEndTimeStr;
+			info_str += build_item_str + "\n";
 		}
 		
 		return info_str;
@@ -69,7 +78,7 @@ public class UIBuildWindow : UIWindow {
 	private void onBuildBtnClick (){
 		BuildBuildRequest req = new BuildBuildRequest ();
 		req.OnSuccess = this.onBuildReqSuccess;
-		int build_type = 100;
+		int build_type = int.Parse(this.buildInput.text);
 		req.build (build_type);
 	}
 
@@ -77,15 +86,21 @@ public class UIBuildWindow : UIWindow {
 	private void onUpgradeBtnClick (){
 		BuildUpgradeRequest req = new BuildUpgradeRequest ();
 		req.OnSuccess = this.onUpgradeReqSuccess;
-		int build_id = 100;
+		int build_id = int.Parse(this.upgradeInput.text);
 		req.upgrade (build_id);
+	}
+
+	private void emptyInput(){
+		this.buildInput.text = string.Empty;
+		this.upgradeInput.text = string.Empty;
+		this.refreshInput.text = string.Empty;
 	}
 
 	// 刷新按钮点击响应
 	private void onRefreshBtnClick (){
 		BuildRefreshRequest req = new BuildRefreshRequest ();
 		req.OnSuccess = this.onRefreshReqSuccess;
-		int build_id = 100;
+		int build_id = int.Parse(this.refreshInput.text);
 		req.refresh (build_id);
 	}
 
@@ -104,6 +119,7 @@ public class UIBuildWindow : UIWindow {
 	public override void OnEnter()
 	{
 		base.OnEnter();
+		this.showBuildInfo ();
 		PushEventNotifyCenter.Instance.AddNotification(ProtocolFeature.OnBuild, this);
 	}
 		
@@ -116,6 +132,11 @@ public class UIBuildWindow : UIWindow {
 	public override void OnResume()
 	{
 		base.OnResume();
+		this.OnBuild ();
+	}
+
+	private void OnBuild()
+	{
 		this.showBuildInfo ();
 	}
 }

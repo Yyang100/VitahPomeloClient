@@ -12,9 +12,9 @@ public static class ProtocolRoute
 	#endregion
 
 	#region build
-	public static string BUILD_INFO = "build.buildHandler.getInfo";
-	public static string BUILD_BUILD = "build.buildHandler.build";
-	public static string BUILD_UPGRADE = "build.buildHandler.upgrade";
-	public static string BUILD_REFRESH = "build.buildHandler.refresh";
+	public static string BUILDING_GETINFO = "building.buildHandler.getInfo";
+	public static string BUILDING_BUILD = "building.buildHandler.build";
+	public static string BUILDING_UPGRADE = "building.buildHandler.upgrade";
+	public static string BUILDING_REFRESH = "building.buildHandler.refresh";
 	#endregion
 }

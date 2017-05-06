@@ -8,6 +8,6 @@ public class BuildRefreshRequest : BaseRequest {
 	{
 		JsonObject msg = new JsonObject();
 		msg.Add ("build_id",build_id);
-		this.Request(ProtocolRoute.BUILD_REFRESH, msg);
+		this.Request(ProtocolRoute.BUILDING_REFRESH, msg);
 	}
 }

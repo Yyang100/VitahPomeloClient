@@ -5,6 +5,6 @@ using SimpleJson;
 public class BuildInfoRequest : BaseRequest {
 	public void getInfo()
 	{
-		this.Request(ProtocolRoute.BUILD_INFO, new JsonObject());
+		this.Request(ProtocolRoute.BUILDING_GETINFO, new JsonObject());
 	}
 }

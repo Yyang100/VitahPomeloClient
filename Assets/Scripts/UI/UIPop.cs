@@ -5,13 +5,13 @@ using UnityEngine.UI;
 [DisallowMultipleComponent]
 public class UIPop : MonoBehaviour
 {
-	public void Start()
+	public void Start ()
 	{
-		this.gameObject.GetComponent<Button>().onClick.AddListener(this.OnButtonPop);
+		this.gameObject.GetComponent<Button> ().onClick.AddListener (this.OnButtonPop);
 	}
 
-	private void OnButtonPop()
+	private void OnButtonPop ()
 	{
-		UIManager.Instance.PopWindow();
+		UIManager.Instance.PopWindow ();
 	}
 }

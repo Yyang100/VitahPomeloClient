@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainSceneStart : MonoBehaviour {
+public class MainSceneStart : MonoBehaviour
+{
 
-	public void Start()
+	public void Start ()
 	{
-		UIManager.Instance.PushWindow(UIWindowDefine.MainWindow);
+		UIManager.Instance.PushWindow (UIWindowDefine.MainWindow);
 	}
 }

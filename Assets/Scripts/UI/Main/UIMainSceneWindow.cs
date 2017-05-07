@@ -4,7 +4,8 @@ using UnityEngine.Assertions;
 using UnityEngine.UI;
 using System;
 
-public class UIMainSceneWindow : UIWindow {
+public class UIMainSceneWindow : UIWindow
+{
 	//  显示用户信息
 	[SerializeField]
 	private Text roleInfoText;
@@ -18,7 +19,8 @@ public class UIMainSceneWindow : UIWindow {
 	private Button buildPanelBtn;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		Assert.IsNotNull (this.roleInfoText);
 		Assert.IsNotNull (this.addResBtn);
 		Assert.IsNotNull (this.buildPanelBtn);
@@ -28,13 +30,15 @@ public class UIMainSceneWindow : UIWindow {
 	}
 
 	// 显示玩家信息内容
-	private void showRoleInfo(){
+	private void showRoleInfo ()
+	{
 		this.roleInfoText.text = string.Empty;
 		this.roleInfoText.text = this.getRoleInfoStr ();
 	}
 
 	// 生成玩家信息的字符串
-	private string getRoleInfoStr(){
+	private string getRoleInfoStr ()
+	{
 		return "用户信息：\n" +
 		"  ID: " + DataPool.Instance.Role.Uid.ToString () +
 		"\n  名字: " + DataPool.Instance.Role.Name +
@@ -44,51 +48,54 @@ public class UIMainSceneWindow : UIWindow {
 	}
 
 	// 添加资源按钮点击响应
-	private void onAddResBtnClick (){
+	private void onAddResBtnClick ()
+	{
 		UserResRequest req = new UserResRequest ();
 		req.OnSuccess = this.onAddResReqSuccess;
 		int gold = 100;
 		int diamond = 100;
-		req.add (gold,diamond);
+		req.add (gold, diamond);
 	}
 
-	private void onBuildBtnClick(){
-		UIManager.Instance.PushWindow(UIWindowDefine.BuildWindow, true);
+	private void onBuildBtnClick ()
+	{
+		UIManager.Instance.PushWindow (UIWindowDefine.BuildWindow, true);
 	}
 
 	// 添加资源协议成功回调
-	private void onAddResReqSuccess(RequestData data){
-		Debug.Log("资源增加协议成功");
+	private void onAddResReqSuccess (RequestData data)
+	{
+		Debug.Log ("资源增加协议成功");
 	}
 
 	// 进入时触发
-	public override void OnEnter()
-    {
-        base.OnEnter();
+	public override void OnEnter ()
+	{
+		base.OnEnter ();
 
 		// 显示用户信息
 		this.showRoleInfo ();
 
 		// 添加监听
-        PushEventNotifyCenter.Instance.AddNotification(ProtocolFeature.OnRole, this);
-    }
+		PushEventNotifyCenter.Instance.AddNotification (ProtocolFeature.OnRole, this);
+	}
 
 	// 退出这个界面时调用
-	public override void OnExit()
-    {
-        base.OnExit();
-        PushEventNotifyCenter.Instance.RemoveObserver(ProtocolFeature.OnRole, this);
-    }
+	public override void OnExit ()
+	{
+		base.OnExit ();
+		PushEventNotifyCenter.Instance.RemoveObserver (ProtocolFeature.OnRole, this);
+	}
 
 	// 每次显示这个界面时调用
-	public override void OnResume()
-    {
-        base.OnResume();
-        this.OnRole();
-    }
+	public override void OnResume ()
+	{
+		base.OnResume ();
+		this.OnRole ();
+	}
 
-	private void OnRole()
-    {
-		this.showRoleInfo();
-    }
+	private void OnRole ()
+	{
+		this.showRoleInfo ();
+	}
 }

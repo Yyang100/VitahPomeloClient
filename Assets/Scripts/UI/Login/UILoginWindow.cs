@@ -36,26 +36,26 @@ public class UILoginWindow : MonoBehaviour
 	private void OnEntry (RequestData data)
 	{
 		// 数据池清空
-		DataPool.Destroy();
+		DataPool.Destroy ();
 
 		// 获取相关登陆数据
-		LoginData loginData = new LoginData();
+		LoginData loginData = new LoginData ();
 		loginData.onSuccess = this.OnLoginDataSuccess;
 		loginData.onError = this.OnLoginDataError;
-		loginData.Receive();
+		loginData.Receive ();
 	}
 
 	// 登陆数据获取成功
-	private void OnLoginDataSuccess()
+	private void OnLoginDataSuccess ()
 	{
-		PushManager.Instance.Init();
-		PushEventNotifyCenter.Instance.RemoveAllListener();
-		Loom.DispatchToMainThread(() => SceneManager.LoadScene("Main"));
+		PushManager.Instance.Init ();
+		PushEventNotifyCenter.Instance.RemoveAllListener ();
+		Loom.DispatchToMainThread (() => SceneManager.LoadScene ("Main"));
 	}
 
 	// 登陆数据获取失败
-	private void OnLoginDataError(RequestData data)
+	private void OnLoginDataError (RequestData data)
 	{
-		this.loginBtn.gameObject.SetActive(true);
+		this.loginBtn.gameObject.SetActive (true);
 	}
 }

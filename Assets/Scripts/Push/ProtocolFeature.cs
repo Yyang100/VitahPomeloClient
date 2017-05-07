@@ -1,5 +1,5 @@
 ﻿public enum ProtocolFeature
 {
-    OnRole,
+	OnRole,
 	OnBuild
 }

@@ -15,7 +15,7 @@ public class LoginData
 		public Action<JsonObject> DataFunc;
 		public string JsonKeyName;
 
-		public LoginRequestItem(Type requestClassType, Action<JsonObject> dataFunc, string jsonKeyName)
+		public LoginRequestItem (Type requestClassType, Action<JsonObject> dataFunc, string jsonKeyName)
 		{
 			this.RequestClassType = requestClassType;
 			this.DataFunc = dataFunc;
@@ -27,54 +27,52 @@ public class LoginData
 	public Action<int> onProgress;
 	public Action<RequestData> onError;
 
-	private List<LoginRequestItem> loginRequestList = new List<LoginRequestItem>();
+	private List<LoginRequestItem> loginRequestList = new List<LoginRequestItem> ();
 
 	private int currentRequestIndex;
 
-	public LoginData()
+	public LoginData ()
 	{
 		this.currentRequestIndex = 0;
-		this.AddRequestItem(typeof(UserRoleRequest), DataPool.Instance.Role.Init, "role_info");
-		this.AddRequestItem(typeof(BuildInfoRequest), DataPool.Instance.Build.Init, "build_info");
+		this.AddRequestItem (typeof(UserRoleRequest), DataPool.Instance.Role.Init, "role_info");
+		this.AddRequestItem (typeof(BuildInfoRequest), DataPool.Instance.Build.Init, "build_info");
 	}
 
-	public void Receive()
+	public void Receive ()
 	{
 		
-		if (this.currentRequestIndex >= this.loginRequestList.Count)
-		{
-			this.onSuccess();
+		if (this.currentRequestIndex >= this.loginRequestList.Count) {
+			this.onSuccess ();
 			return;
 		}
 			
-		var requestItem = this.loginRequestList[this.currentRequestIndex];
-		var request = (BaseRequest)Activator.CreateInstance(requestItem.RequestClassType);
+		var requestItem = this.loginRequestList [this.currentRequestIndex];
+		var request = (BaseRequest)Activator.CreateInstance (requestItem.RequestClassType);
 
 		request.OnSuccess = this.OnInfo;
 		request.OnError = this.onError;
 
-		MethodInfo mi = requestItem.RequestClassType.GetMethod("getInfo");
-		if (mi != null)
-		{
-			mi.Invoke(request, null);
+		MethodInfo mi = requestItem.RequestClassType.GetMethod ("getInfo");
+		if (mi != null) {
+			mi.Invoke (request, null);
 		}
 	}
 
-	private void OnInfo(RequestData data)
+	private void OnInfo (RequestData data)
 	{
-		var requestItem = this.loginRequestList[this.currentRequestIndex];
-		requestItem.DataFunc(JsonUtil.GetJsonObject(data.JsonObject, requestItem.JsonKeyName));
+		var requestItem = this.loginRequestList [this.currentRequestIndex];
+		requestItem.DataFunc (JsonUtil.GetJsonObject (data.JsonObject, requestItem.JsonKeyName));
 		this.currentRequestIndex++;
-		this.Receive();
+		this.Receive ();
 	}
 
-	private void OnError(RequestData data)
+	private void OnError (RequestData data)
 	{
-		this.onError(data);
+		this.onError (data);
 	}
 
-	private void AddRequestItem(Type requestClassType, Action<JsonObject> dataFunc, string jsonKeyName)
+	private void AddRequestItem (Type requestClassType, Action<JsonObject> dataFunc, string jsonKeyName)
 	{
-		this.loginRequestList.Add(new LoginRequestItem(requestClassType, dataFunc, jsonKeyName));
+		this.loginRequestList.Add (new LoginRequestItem (requestClassType, dataFunc, jsonKeyName));
 	}
 }

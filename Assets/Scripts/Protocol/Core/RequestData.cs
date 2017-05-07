@@ -4,28 +4,24 @@ using SimpleJson;
 
 public class RequestData
 {
-    private int code;
-    private JsonObject jsonObject;
+	private int code;
+	private JsonObject jsonObject;
 
-    public RequestData(int code, string msg, JsonObject jsonObject)
-    {
-        this.code = code;
-        this.jsonObject = jsonObject;
-    }
+	public RequestData (int code, string msg, JsonObject jsonObject)
+	{
+		this.code = code;
+		this.jsonObject = jsonObject;
+	}
 
-    public int Code
-    {
-        get
-        {
-            return this.code;
-        }
-    }
+	public int Code {
+		get {
+			return this.code;
+		}
+	}
 
-    public JsonObject JsonObject
-    {
-        get
-        {
-            return this.jsonObject;
-        }
-    }
+	public JsonObject JsonObject {
+		get {
+			return this.jsonObject;
+		}
+	}
 }

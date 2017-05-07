@@ -1,6 +1,4 @@
-﻿// 用户数据管理
-
-using SimpleJson;
+﻿using SimpleJson;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,12 +14,12 @@ public class RoleDataManager
 
 	public ulong Diamond { get; private set; }
 
-	public void Init(JsonObject jsonRole)
+	public void Init (JsonObject jsonRole)
 	{
-		this.Uid = JsonUtil.GetUInt32(jsonRole, "uid", this.Uid);
-		this.Lv = JsonUtil.GetUInt32(jsonRole, "lv", this.Lv);
-		this.Name = JsonUtil.GetString(jsonRole, "name", this.Name);
-		this.Gold = JsonUtil.GetUInt64(jsonRole, "gold", this.Gold);
-		this.Diamond = JsonUtil.GetUInt64(jsonRole, "diamond", this.Diamond);
+		this.Uid = JsonUtil.GetUInt32 (jsonRole, "uid", this.Uid);
+		this.Lv = JsonUtil.GetUInt32 (jsonRole, "lv", this.Lv);
+		this.Name = JsonUtil.GetString (jsonRole, "name", this.Name);
+		this.Gold = JsonUtil.GetUInt64 (jsonRole, "gold", this.Gold);
+		this.Diamond = JsonUtil.GetUInt64 (jsonRole, "diamond", this.Diamond);
 	}
 }

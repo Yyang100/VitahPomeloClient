@@ -4,6 +4,6 @@ using System;
 
 public enum ErrorCode
 {
-    OK = 200,
-    FAIL = 500
+	OK = 200,
+	FAIL = 500
 }

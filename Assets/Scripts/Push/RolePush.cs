@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class RolePush
 {
-    public static void OnRole(JsonObject jsonObject)
-    {
-        Debug.Log("role push : " + jsonObject); // todo
-        DataPool.Instance.Role.Init(jsonObject);
-        PushEventNotifyCenter.Instance.FireChangeEvent(ProtocolFeature.OnRole);
-    }
+	public static void OnRole (JsonObject jsonObject)
+	{
+		Debug.Log ("role push : " + jsonObject); // todo
+		DataPool.Instance.Role.Init (jsonObject);
+		PushEventNotifyCenter.Instance.FireChangeEvent (ProtocolFeature.OnRole);
+	}
 }

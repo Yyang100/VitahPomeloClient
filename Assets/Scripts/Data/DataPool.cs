@@ -1,8 +1,4 @@
-﻿
-// 数据中心
-
-
-using SimpleJson;
+﻿using SimpleJson;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,9 +8,9 @@ public class DataPool : Singleton<DataPool>
 
 	public BuildDataManager Build { get; private set; }
 
-	public void OnInit()
+	public void OnInit ()
 	{
-		this.Role = new RoleDataManager();
-		this.Build = new BuildDataManager();
+		this.Role = new RoleDataManager ();
+		this.Build = new BuildDataManager ();
 	}
 }

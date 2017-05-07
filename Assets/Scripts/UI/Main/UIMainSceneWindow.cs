@@ -65,7 +65,6 @@ public class UIMainSceneWindow : UIWindow
 	// 添加资源协议成功回调
 	private void onAddResReqSuccess (RequestData data)
 	{
-		Debug.Log ("资源增加协议成功");
 	}
 
 	// 进入时触发

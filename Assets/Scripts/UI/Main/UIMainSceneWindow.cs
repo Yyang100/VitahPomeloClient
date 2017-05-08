@@ -57,6 +57,7 @@ public class UIMainSceneWindow : UIWindow
 		req.add (gold, diamond);
 	}
 
+	// 跳转到建筑界面
 	private void onBuildBtnClick ()
 	{
 		UIManager.Instance.PushWindow (UIWindowDefine.BuildWindow, true);

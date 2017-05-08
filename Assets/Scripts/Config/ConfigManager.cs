@@ -1,49 +1,46 @@
 ﻿using UnityEngine;
 using SimpleJson;
 
-public class ConfigManager {
+public class ConfigManager
+{
 
 	private static ConfigManager instance = null;
 
-	private ConfigCode configCode = new ConfigCode();
+	private ConfigCode configCode = new ConfigCode ();
 
-	private ConfigManager() 
+	private ConfigManager ()
 	{
 	}
 
-	public static ConfigManager Instance() 
+	public static ConfigManager Instance ()
 	{
-		if (instance == null) 
-		{
-			instance = new ConfigManager();
-			instance.Load();
+		if (instance == null) {
+			instance = new ConfigManager ();
+			instance.Load ();
 		}
 
 		return instance;
 	}
 
-	public ConfigCode Code()
+	public ConfigCode Code ()
 	{
 		return this.configCode;
 	}
 
-	public void Load() 
+	public void Load ()
 	{
-		this.configCode.LoadFromJson(this.JsonFromFile("code"));
+		this.configCode.LoadFromJson (this.JsonFromFile ("code"));
 	}
 
-	public JsonObject JsonFromFile(string filepath) 
+	public JsonObject JsonFromFile (string filepath)
 	{
 		JsonObject jsonObject = null;
 		TextAsset fileName = UnityEditor.AssetDatabase.LoadAssetAtPath ("Assets/Config/" + filepath + ".json", typeof(TextAsset)) as TextAsset;
 
-		if (fileName == null)
-		{
-			Debug.Log("find json file faild!");
-		}
-		else
-		{
-			jsonObject = SimpleJson.SimpleJson.DeserializeObject<JsonObject>(fileName.text);
+		if (fileName == null) {
+			Debug.Log ("find json file faild!");
+		} else {
+			jsonObject = SimpleJson.SimpleJson.DeserializeObject<JsonObject> (fileName.text);
 		}
 
 		return jsonObject;

@@ -25,6 +25,7 @@ public class BaseRequest
 						this.OnError (data);
 					}
 
+					// 当协议返回错误码时，弹出错误码对应内容
 					if (this.IsShowTip == true) {
 						var codeConf = ConfigManager.Instance ().Code ().GetItem (data.Code);
 						if (codeConf != null) {

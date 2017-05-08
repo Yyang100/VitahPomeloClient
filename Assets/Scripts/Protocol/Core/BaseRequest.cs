@@ -8,6 +8,8 @@ public class BaseRequest
 	public Action<RequestData> OnError;
 	public Action OnFail;
 
+	public bool IsShowTip = true;
+
 	protected void Request (string route, JsonObject msg)
 	{
 		PomeloManager.Instance.Request (
@@ -21,6 +23,15 @@ public class BaseRequest
 				} else {
 					if (this.OnError != null) {
 						this.OnError (data);
+					}
+
+					if (this.IsShowTip == true) {
+						var codeConf = ConfigManager.Instance ().Code ().GetItem (data.Code);
+						if (codeConf != null) {
+							UITipUtil.Show (codeConf.Dscp);
+						} else {
+							UITipUtil.Show ("错误码:" + data.Code);
+						}
 					}
 				}
 			},

@@ -40,7 +40,7 @@ public class UIMainSceneWindow : UIWindow
 	private string getRoleInfoStr ()
 	{
 		return "用户信息：\n" +
-		"  ID: " + DataPool.Instance.Role.Uid.ToString () +
+		"   ID: " + DataPool.Instance.Role.Uid.ToString () +
 		"\n  名字: " + DataPool.Instance.Role.Name +
 		"  等级: " + DataPool.Instance.Role.Lv.ToString () +
 		"\n  金币: " + DataPool.Instance.Role.Gold.ToString () +
